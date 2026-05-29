@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Afro-Caribbean Mini Market — 19 George Street, Boston</title>
+<meta name="description" content="A small shop on George Street in Boston, Lincolnshire stocking African and Caribbean groceries. Yam, plantain, scotch bonnet, saltfish, palm oil, jollof staples, Supermalt and more.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,800;9..144,900&family=Inter+Tight:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F4E8D0;        /* cassava cream */
+    --paper-deep:#EBDAB6;
+    --ink:#1F1107;          /* cocoa ink */
+    --ink-soft:#3B2515;
+    --bonnet:#C4361A;       /* scotch bonnet */
+    --palm:#D89B2A;         /* palm oil amber */
+    --leaf:#3F5340;         /* plantain leaf */
+    --font-display:"Fraunces", "Hoefler Text", Georgia, serif;
+    --font-body:"Inter Tight", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  }
+  *,*::before,*::after{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;background:var(--paper);color:var(--ink);
+    font-family:var(--font-body);font-size:clamp(0.95rem,0.6rem + 0.9vw,1.05rem);
+    line-height:1.55;-webkit-font-smoothing:antialiased;
+    text-wrap:pretty;hyphens:auto;
+    background-image:
+      radial-gradient(circle at 20% 12%, rgba(216,155,42,0.07), transparent 40%),
+      radial-gradient(circle at 85% 78%, rgba(196,54,26,0.06), transparent 45%);
+  }
+  body::before{
+    content:"";position:fixed;inset:0;pointer-events:none;z-index:1;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.12 0 0 0 0 0.06 0 0 0 0 0.03 0 0 0 0.5 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    opacity:0.18;mix-blend-mode:multiply;
+  }
+  h1,h2,h3{text-wrap:balance;margin:0;font-family:var(--font-display);letter-spacing:-0.02em;font-weight:800;}
+  a{color:inherit;}
+  ::selection{background:var(--bonnet);color:var(--paper);}
+
+  /* Top bar */
+  .top{
+    position:relative;z-index:5;display:flex;justify-content:space-between;align-items:baseline;
+    padding:1.25rem clamp(1rem,4vw,3rem) 0.75rem;
+    border-bottom:1px solid rgba(31,17,7,0.15);
+    font-family:var(--font-body);font-size:0.78rem;letter-spacing:0.18em;text-transform:uppercase;
+  }
+  .top__mark{font-weight:600;}
+  .top__place{color:var(--ink-soft);}
+
+  /* Hero */
+  .hero{
+    position:relative;z-index:2;padding:clamp(2rem,5vw,4rem) clamp(1rem,4vw,3rem) clamp(2rem,4vw,3rem);
+    display:grid;grid-template-columns:1fr;gap:2rem;
+  }
+  @media(min-width:880px){
+    .hero{grid-template-columns:1.4fr 1fr;align-items:end;gap:3rem;}
+  }
+  .wordmark{
+    font-family:var(--font-display);font-weight:900;
+    font-variation-settings:"opsz" 144;
+    font-size:clamp(3.2rem,11vw,9.4rem);
+    line-height:0.85;letter-spacing:-0.045em;
+    color:var(--ink);
+  }
+  .wordmark em{
+    font-style:italic;font-weight:600;color:var(--bonnet);
+    font-variation-settings:"opsz" 144;
+  }
+  .wordmark .amp{
+    display:inline-block;transform:translateY(0.05em) rotate(-6deg);
+    color:var(--palm);font-style:italic;font-weight:600;
+  }
+  .hero__rail{
+    display:flex;flex-direction:column;gap:1.25rem;
+    padding-bottom:0.5rem;
+  }
+  .hero__strap{
+    font-family:var(--font-display);font-weight:600;
+    font-size:clamp(1.25rem,2.4vw,1.6rem);line-height:1.25;
+    color:var(--ink);max-width:28ch;
+    font-variation-settings:"opsz" 36;
+  }
+  .hero__strap span{color:var(--bonnet);font-style:italic;}
+  .hero__meta{
+    font-size:0.78rem;letter-spacing:0.2em;text-transform:uppercase;
+    color:var(--ink-soft);display:flex;flex-wrap:wrap;gap:1rem 1.5rem;
+  }
+  .hero__meta b{font-weight:600;color:var(--ink);}
+
+  /* Marquee */
+  .marquee{
+    position:relative;z-index:2;overflow:hidden;
+    border-top:1px solid var(--ink);border-bottom:1px solid var(--ink);
+    background:var(--paper-deep);
+    --speed:42s;
+  }
+  .marquee__track{
+    display:inline-flex;gap:2.5rem;white-space:nowrap;
+    padding:0.9rem 0;
+    animation:scroll var(--speed) linear infinite;
+    font-family:var(--font-display);font-weight:800;
+    font-size:clamp(1.5rem,4vw,2.6rem);
+    font-variation-settings:"opsz" 72;
+    letter-spacing:-0.01em;
+    color:var(--ink);
+  }
+  .marquee__track span{display:inline-flex;align-items:center;gap:2.5rem;}
+  .marquee__track span::after{
+    content:"";display:inline-block;width:0.55rem;height:0.55rem;border-radius:50%;
+    background:var(--bonnet);transform:translateY(-0.15em);
+  }
+  .marquee__track i{font-style:italic;color:var(--bonnet);font-weight:600;}
+  @keyframes scroll{ to{ transform:translateX(-50%); } }
+  @media(prefers-reduced-motion:reduce){
+    .marquee__track{animation:none;}
+  }
+
+  /* Intro slab */
+  .intro{
+    position:relative;z-index:2;padding:clamp(3rem,6vw,5rem) clamp(1rem,4vw,3rem);
+    display:grid;grid-template-columns:1fr;gap:2rem;
+    max-width:1280px;margin:0 auto;
+  }
+  @media(min-width:880px){
+    .intro{grid-template-columns:0.7fr 1.3fr;gap:4rem;align-items:start;}
+  }
+  .intro__label{
+    font-size:0.74rem;letter-spacing:0.24em;text-transform:uppercase;
+    color:var(--ink-soft);
+    padding-top:0.5rem;border-top:2px solid var(--ink);width:fit-content;
+  }
+  .intro__body{
+    font-family:var(--font-display);font-weight:400;
+    font-size:clamp(1.4rem,2.6vw,2rem);line-height:1.3;
+    color:var(--ink);text-wrap:balance;
+    font-variation-settings:"opsz" 48;
+  }
+  .intro__body strong{font-weight:800;color:var(--ink);}
+  .intro__body em{color:var(--bonnet);font-style:italic;font-weight:600;}
+
+  /* Stock broadsheet */
+  .stock{
+    position:relative;z-index:2;background:var(--ink);color:var(--paper);
+    padding:clamp(3rem,6vw,5rem) clamp(1rem,4vw,3rem);
+  }
+  .stock__inner{max-width:1280px;margin:0 auto;}
+  .stock__head{
+    display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:1rem;
+    padding-bottom:1.5rem;margin-bottom:2.5rem;border-bottom:1px solid rgba(244,232,208,0.25);
+  }
+  .stock__title{
+    font-family:var(--font-display);font-weight:800;
+    font-size:clamp(2.2rem,5.5vw,4.4rem);letter-spacing:-0.035em;line-height:0.95;
+    font-variation-settings:"opsz" 120;
+    color:var(--paper);
+  }
+  .stock__title em{color:var(--palm);font-style:italic;font-weight:600;}
+  .stock__caption{
+    font-size:0.78rem;letter-spacing:0.2em;text-transform:uppercase;
+    color:var(--palm);
+  }
+  .stock__grid{
+    display:grid;grid-template-columns:1fr;gap:2.5rem 3rem;
+  }
+  @media(min-width:680px){ .stock__grid{grid-template-columns:1fr 1fr;} }
+  @media(min-width:1040px){ .stock__grid{grid-template-columns:repeat(3,1fr);} }
+  .col{display:flex;flex-direction:column;gap:0.5rem;}
+  .col h3{
+    font-family:var(--font-display);font-weight:800;
+    font-size:1.3rem;letter-spacing:-0.01em;
+    font-variation-settings:"opsz" 24;
+    padding-bottom:0.55rem;border-bottom:1px dashed rgba(244,232,208,0.35);
+    margin-bottom:0.4rem;color:var(--paper);
+    display:flex;justify-content:space-between;align-items:baseline;gap:1rem;
+  }
+  .col h3 small{
+    font-family:var(--font-body);font-size:0.7rem;font-weight:500;
+    letter-spacing:0.18em;text-transform:uppercase;color:var(--palm);
+  }
+  .col ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:0.35rem;}
+  .col li{
+    font-family:var(--font-display);font-size:1.02rem;font-weight:400;
+    color:var(--paper);opacity:0.92;line-height:1.4;
+    font-variation-settings:"opsz" 16;
+  }
+  .col li em{color:var(--palm);font-style:italic;font-weight:500;}
+
+  @supports (animation-timeline: view()){
+    .col{animation:rise both;animation-timeline:view();animation-range:entry 0% cover 25%;}
+    @keyframes rise{ from{opacity:0;transform:translateY(1.5rem);} to{opacity:1;transform:translateY(0);} }
+  }
+
+  /* Find us */
+  .find{
+    position:relative;z-index:2;padding:clamp(3rem,6vw,5rem) clamp(1rem,4vw,3rem);
+    display:grid;gap:2rem;max-width:1280px;margin:0 auto;
+    grid-template-columns:1fr;
+  }
+  @media(min-width:880px){
+    .find{grid-template-columns:1.1fr 0.9fr;gap:4rem;align-items:end;}
+  }
+  .find__title{
+    font-family:var(--font-display);font-weight:800;
+    font-size:clamp(2.4rem,7vw,5.6rem);line-height:0.9;letter-spacing:-0.04em;
+    font-variation-settings:"opsz" 144;
+  }
+  .find__title em{color:var(--bonnet);font-style:italic;font-weight:600;}
+  .find__addr{
+    font-family:var(--font-display);font-weight:600;
+    font-size:clamp(1.3rem,2.4vw,1.7rem);line-height:1.35;
+    font-variation-settings:"opsz" 36;
+  }
+  .find__addr span{display:block;}
+  .find__addr a{
+    display:inline-block;margin-top:1rem;text-decoration:none;
+    font-family:var(--font-body);font-size:0.8rem;letter-spacing:0.2em;
+    text-transform:uppercase;font-weight:600;color:var(--ink);
+    padding:0.7rem 1.1rem;border:1.5px solid var(--ink);border-radius:999px;
+    transition:background 0.25s ease, color 0.25s ease;
+  }
+  .find__addr a:hover{background:var(--ink);color:var(--paper);}
+
+  /* Footer letterhead */
+  footer{
+    position:relative;z-index:2;border-top:1px solid var(--ink);
+    padding:clamp(2rem,4vw,3rem) clamp(1rem,4vw,3rem) clamp(2rem,4vw,3rem);
+    background:var(--paper);
+  }
+  .foot{
+    max-width:1280px;margin:0 auto;
+    display:grid;gap:2rem;grid-template-columns:1fr;align-items:end;
+  }
+  @media(min-width:880px){ .foot{grid-template-columns:1.5fr 1fr;} }
+  .foot__name{
+    font-family:var(--font-display);font-weight:900;
+    font-size:clamp(2rem,6vw,4.6rem);line-height:0.9;letter-spacing:-0.04em;
+    font-variation-settings:"opsz" 120;
+  }
+  .foot__name em{color:var(--bonnet);font-style:italic;font-weight:700;}
+  .foot__meta{
+    font-size:0.78rem;letter-spacing:0.2em;text-transform:uppercase;
+    color:var(--ink-soft);display:flex;flex-direction:column;gap:0.35rem;
+    text-align:right;
+  }
+  @media(max-width:879px){.foot__meta{text-align:left;}}
+  .foot__meta b{color:var(--ink);font-weight:600;}
+
+  /* Accessibility focus */
+  a:focus-visible{outline:2px solid var(--bonnet);outline-offset:3px;border-radius:3px;}
+</style>
+</head>
+<body>
+
+  <header class="top">
+    <span class="top__mark">Afrotec · Afro-Caribbean Mini Market</span>
+    <span class="top__place">George Street · Boston · Lincs</span>
+  </header>
+
+  <section class="hero">
+    <h1 class="wordmark">
+      Afro<span class="amp">–</span><br>
+      Caribbean<br>
+      <em>Mini Market.</em>
+    </h1>
+    <div class="hero__rail">
+      <p class="hero__strap">
+        Plantain. Yam. Scotch&nbsp;bonnet. Saltfish. <span>The pantry that Boston, Lincolnshire was missing.</span>
+      </p>
+      <div class="hero__meta">
+        <span><b>19 George Street</b><br>Boston PE21 8XF</span>
+        <span><b>Walk-in shop</b><br>African &amp; Caribbean groceries</span>
+      </div>
+    </div>
+  </section>
+
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee__track">
+      <span>Fresh plantain</span>
+      <span>Yam &amp; cassava</span>
+      <span><i>Scotch bonnet</i></span>
+      <span>Egusi</span>
+      <span>Palm oil</span>
+      <span>Garri</span>
+      <span>Fufu flour</span>
+      <span>Ackee &amp; saltfish</span>
+      <span><i>Jollof staples</i></span>
+      <span>Pounded yam</span>
+      <span>Maggi cubes</span>
+      <span>Supermalt</span>
+      <span>Ginger beer</span>
+      <span>Dried fish</span>
+      <span><i>Suya spice</i></span>
+      <!-- duplicate for seamless loop -->
+      <span>Fresh plantain</span>
+      <span>Yam &amp; cassava</span>
+      <span><i>Scotch bonnet</i></span>
+      <span>Egusi</span>
+      <span>Palm oil</span>
+      <span>Garri</span>
+      <span>Fufu flour</span>
+      <span>Ackee &amp; saltfish</span>
+      <span><i>Jollof staples</i></span>
+      <span>Pounded yam</span>
+      <span>Maggi cubes</span>
+      <span>Supermalt</span>
+      <span>Ginger beer</span>
+      <span>Dried fish</span>
+      <span><i>Suya spice</i></span>
+    </div>
+  </div>
+
+  <section class="intro">
+    <p class="intro__label">A small shop, fully stocked</p>
+    <p class="intro__body">
+      A corner of George Street stacked with the staples that make <em>jollof</em>, <em>egusi</em>, <em>brown stew chicken</em>, <em>ackee &amp; saltfish</em>, and <em>pounded yam</em> taste the way they should. <strong>Fresh produce, store-cupboard essentials, frozen fish and meats, drinks, and the spices</strong> that travel a long way to get here — and don't sit on the shelf for long.
+    </p>
+  </section>
+
+  <section class="stock">
+    <div class="stock__inner">
+      <header class="stock__head">
+        <h2 class="stock__title">What's on the <em>shelves</em>.</h2>
+        <p class="stock__caption">A working list · stock varies week to week</p>
+      </header>
+      <div class="stock__grid">
+
+        <div class="col">
+          <h3>Fresh &amp; root <small>produce</small></h3>
+          <ul>
+            <li>Yellow &amp; green plantain</li>
+            <li>White yam, puna yam</li>
+            <li>Cassava &amp; eddoes</li>
+            <li>Sweet potato &amp; cocoyam</li>
+            <li><em>Scotch bonnet</em> peppers</li>
+            <li>Okra, garden eggs</li>
+            <li>Ginger root &amp; garlic</li>
+          </ul>
+        </div>
+
+        <div class="col">
+          <h3>Pantry &amp; flours <small>staples</small></h3>
+          <ul>
+            <li>Long-grain &amp; basmati rice</li>
+            <li>Ground rice, semolina</li>
+            <li>Fufu flour, garri</li>
+            <li>Plantain flour</li>
+            <li>Cornmeal &amp; ogi</li>
+            <li>Black-eyed beans &amp; honey beans</li>
+            <li>Palm oil &amp; vegetable oil</li>
+          </ul>
+        </div>
+
+        <div class="col">
+          <h3>Seasonings &amp; spice <small>flavour</small></h3>
+          <ul>
+            <li><em>Maggi cubes</em> &amp; Knorr</li>
+            <li>Suya pepper, yaji blend</li>
+            <li>Egusi (melon seed)</li>
+            <li>Ogbono, locust bean (iru)</li>
+            <li>Curry &amp; jerk seasonings</li>
+            <li>All-purpose, thyme, allspice</li>
+            <li>Cracked pepper, bay leaf</li>
+          </ul>
+        </div>
+
+        <div class="col">
+          <h3>Frozen &amp; fish <small>freezer</small></h3>
+          <ul>
+            <li>Frozen titus &amp; mackerel</li>
+            <li>Croaker &amp; tilapia</li>
+            <li>Smoked &amp; dried fish</li>
+            <li>Stockfish heads</li>
+            <li>Goat meat &amp; tripe</li>
+            <li>Cow foot &amp; shaki</li>
+            <li>Saltfish (bacalao)</li>
+          </ul>
+        </div>
+
+        <div class="col">
+          <h3>Tinned &amp; jar <small>cupboard</small></h3>
+          <ul>
+            <li><em>Ackee</em> in brine</li>
+            <li>Tomato puree (Gino, Tasty Tom)</li>
+            <li>Coconut milk &amp; cream</li>
+            <li>Callaloo &amp; corned beef</li>
+            <li>Scotch bonnet sauce</li>
+            <li>Jerk marinades</li>
+            <li>Peanut butter, groundnut paste</li>
+          </ul>
+        </div>
+
+        <div class="col">
+          <h3>Drinks &amp; sweet <small>fridge</small></h3>
+          <ul>
+            <li><em>Supermalt</em> &amp; Maltina</li>
+            <li>Vita malt</li>
+            <li>Jamaican ginger beer</li>
+            <li>Sorrel &amp; chapman mix</li>
+            <li>Palm wine (in season)</li>
+            <li>Plantain chips &amp; chin-chin</li>
+            <li>Bun &amp; cheese, hard-dough bread</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="find" id="find">
+    <h2 class="find__title">Find us on <em>George Street.</em></h2>
+    <address class="find__addr">
+      <span>Afro-Caribbean Mini Market</span>
+      <span>19 George Street</span>
+      <span>Boston, Lincolnshire</span>
+      <span>PE21 8XF</span>
+      <a href="https://www.google.com/maps/search/?api=1&amp;query=Afro-Caribbean+Mini+Market+19+George+Street+Boston+PE21+8XF" target="_blank" rel="noopener">Open in Maps →</a>
+    </address>
+  </section>
+
+  <footer>
+    <div class="foot">
+      <p class="foot__name">Afro<em>–</em>Caribbean<br>Mini Market.</p>
+      <div class="foot__meta">
+        <span><b>19 George Street</b></span>
+        <span>Boston · Lincolnshire</span>
+        <span>PE21 8XF</span>
+        <span>· · ·</span>
+        <span>Walk-in shop</span>
+        <span>African &amp; Caribbean groceries</span>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
